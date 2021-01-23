@@ -1,0 +1,9 @@
+*~
+*.RData
+*.Rhistory
+*.log
+*.o
+*.so
+*.dll
+/Archive
+/Article
