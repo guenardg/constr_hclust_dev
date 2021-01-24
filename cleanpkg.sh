@@ -1,5 +1,6 @@
 #!/bin/bash
 PKG='constr.hclust'
+DEV='constr.hclust_dev'
 rm -f *~
 rm -f .*~
 rm $PKG.Rcheck.tar.gz
@@ -13,4 +14,4 @@ rm -f $PKG/src/*.so
 rm -f $PKG/src/*.o
 rm -f $PKG/src/*.rds
 cd $PKG && find -type f \( -not -name "MD5" \) -exec md5sum '{}' \; > MD5
-
+cp -a ./MD5 ../$DEV/MD5
