@@ -6,16 +6,28 @@
 library(png)
 library(grid)
 library(magrittr)
+library(sp)
 library(spdep)
+library(raster)
+library(rgdal)
 ##
 if(FALSE) {
-  map <-
-    readPNG("GIS/mite.png")%>%
-    as.raster
-  ## str(map)
   ##
-  map <- map[rep(c(TRUE,FALSE,FALSE),length.out=nrow(map)),
-             rep(c(TRUE,FALSE,FALSE),length.out=ncol(map))]
+  maps <- list(
+    subst = raster("GIS/Substratum.png"),
+    shrub = raster("GIS/Shrubs.png"),
+    topog = raster("GIS/Topography.png")
+  )
+  for(i in 1L:length(maps))
+    extent(maps[[i]]) <- c(0,2.6,0,10)
+  ##
+  plot(maps$subst)
+  plot(maps$shrub)
+  plot(maps$topog)
+  ##
+  writeRaster(maps$subst, "GIS/subst.tif")
+  writeRaster(maps$shrub, "GIS/shrub.tif")
+  writeRaster(maps$topog, "GIS/topog.tif")
   ##
   mite <-
     list(
@@ -23,6 +35,21 @@ if(FALSE) {
       env = read.table("mite_env.txt"),
       xy = read.table("mite_xy.txt")
     )
+  ##
+  writeOGR(
+    obj=SpatialPointsDataFrame(
+          coords=mite$xy,
+          data=data.frame(id=as.numeric(rownames(mite$xy)))
+        ),
+    layer="Points",dsn="GIS/points.gpkg",driver="GPKG"
+  )
+  ##
+  ### Rendu ici...
+  ##
+  ##
+  ##
+  ##
+  ##
   ##
   mite$xy <- mite$xy[,2L:1L]
   mite$xy[,1L] <- 10-mite$xy[,1L]
