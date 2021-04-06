@@ -1,0 +1,7 @@
+name	user	system	elapsed
+Faithful	1.00	0.02	1.02	
+Oribates	0.41	0.00	0.41	
+ScotchWhiskey	0.35	0.00	0.41	
+constr.hclust	0.64	0.02	0.66	
+constr.lshclust	0.28	0.03	0.29	
+plot.constr.hclust	0.11	0.01	0.13	

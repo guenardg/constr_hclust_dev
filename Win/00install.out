@@ -1,0 +1,91 @@
+* installing *source* package 'constr.hclust' ...
+** using staged installation
+** libs
+
+*** arch - i386
+d:/Compiler/rtools40/mingw32/bin/gcc  -I"D:/RCompile/recent/R-4.0.5/include" -DNDEBUG     -I"d:/Compiler/gcc-4.9.3/local330/include"     -pedantic -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c constr.hclust.c -o constr.hclust.o
+constr.hclust.c: In function 'clust':
+constr.hclust.c:572:47: warning: unused variable 'min_idx' [-Wunused-variable]
+   unsigned int i, k, nn_i, nn_j, i2, j2, ncl, min_idx;
+                                               ^~~~~~~
+constr.hclust.c:572:19: warning: unused variable 'k' [-Wunused-variable]
+   unsigned int i, k, nn_i, nn_j, i2, j2, ncl, min_idx;
+                   ^
+constr.hclust.c: In function 'constClust':
+constr.hclust.c:641:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, ncl, nn_i, nn_j, i2, j2;
+                   ^
+constr.hclust.c: In function 'clustLS':
+constr.hclust.c:682:22: warning: unused variable 'k' [-Wunused-variable]
+   unsigned int i, j, k, nn_i, nn_j, i2, j2, ncl;
+                      ^
+constr.hclust.c:682:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, k, nn_i, nn_j, i2, j2, ncl;
+                   ^
+constr.hclust.c: In function 'constClustLS':
+constr.hclust.c:750:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, nn_i, nn_j, i2, j2, ncl;
+                   ^
+constr.hclust.c: In function 'initNNlist':
+constr.hclust.c:109:15: warning: 'nn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     nn_idx[i] = nn;
+     ~~~~~~~~~~^~~~
+constr.hclust.c: In function 'updateNNlist':
+constr.hclust.c:130:13: warning: 'nn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   nn_idx[i] = nn;
+   ~~~~~~~~~~^~~~
+d:/Compiler/rtools40/mingw32/bin/gcc  -I"D:/RCompile/recent/R-4.0.5/include" -DNDEBUG     -I"d:/Compiler/gcc-4.9.3/local330/include"     -pedantic -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+d:/Compiler/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o constr.hclust.dll tmp.def constr.hclust.o registerDynamicSymbol.o -Ld:/Compiler/gcc-4.9.3/local330/lib/i386 -Ld:/Compiler/gcc-4.9.3/local330/lib -LD:/RCompile/recent/R-4.0.5/bin/i386 -lR
+installing to d:/RCompile/CRANguest/R-release/lib/00LOCK-constr.hclust/00new/constr.hclust/libs/i386
+
+*** arch - x64
+d:/Compiler/rtools40/mingw64/bin/gcc  -I"D:/RCompile/recent/R-4.0.5/include" -DNDEBUG     -I"d:/Compiler/gcc-4.9.3/local330/include"     -pedantic -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c constr.hclust.c -o constr.hclust.o
+constr.hclust.c: In function 'clust':
+constr.hclust.c:572:47: warning: unused variable 'min_idx' [-Wunused-variable]
+   unsigned int i, k, nn_i, nn_j, i2, j2, ncl, min_idx;
+                                               ^~~~~~~
+constr.hclust.c:572:19: warning: unused variable 'k' [-Wunused-variable]
+   unsigned int i, k, nn_i, nn_j, i2, j2, ncl, min_idx;
+                   ^
+constr.hclust.c: In function 'constClust':
+constr.hclust.c:641:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, ncl, nn_i, nn_j, i2, j2;
+                   ^
+constr.hclust.c: In function 'clustLS':
+constr.hclust.c:682:22: warning: unused variable 'k' [-Wunused-variable]
+   unsigned int i, j, k, nn_i, nn_j, i2, j2, ncl;
+                      ^
+constr.hclust.c:682:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, k, nn_i, nn_j, i2, j2, ncl;
+                   ^
+constr.hclust.c: In function 'constClustLS':
+constr.hclust.c:750:19: warning: unused variable 'j' [-Wunused-variable]
+   unsigned int i, j, nn_i, nn_j, i2, j2, ncl;
+                   ^
+constr.hclust.c: In function 'initNNlist':
+constr.hclust.c:109:15: warning: 'nn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     nn_idx[i] = nn;
+     ~~~~~~~~~~^~~~
+constr.hclust.c: In function 'updateNNlist':
+constr.hclust.c:130:13: warning: 'nn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   nn_idx[i] = nn;
+   ~~~~~~~~~~^~~~
+d:/Compiler/rtools40/mingw64/bin/gcc  -I"D:/RCompile/recent/R-4.0.5/include" -DNDEBUG     -I"d:/Compiler/gcc-4.9.3/local330/include"     -pedantic -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+d:/Compiler/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o constr.hclust.dll tmp.def constr.hclust.o registerDynamicSymbol.o -Ld:/Compiler/gcc-4.9.3/local330/lib/x64 -Ld:/Compiler/gcc-4.9.3/local330/lib -LD:/RCompile/recent/R-4.0.5/bin/x64 -lR
+installing to d:/RCompile/CRANguest/R-release/lib/00LOCK-constr.hclust/00new/constr.hclust/libs/x64
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+*** arch - i386
+*** arch - x64
+** testing if installed package can be loaded from final location
+*** arch - i386
+*** arch - x64
+** testing if installed package keeps a record of temporary installation path
+* MD5 sums
+packaged installation of 'constr.hclust' as constr.hclust_1.5-1.zip
+* DONE (constr.hclust)
