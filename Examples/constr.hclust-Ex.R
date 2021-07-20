@@ -147,8 +147,6 @@ plotWhiskey("finish", 5L)
 plotWhiskey("norm", 5L)
 ##
 ## End of the Scotch Whiskey tasting data example
-
-
 ## Not run: 
 ### Benchmarking example
 ### Benchmarking can be used to estimate computation time for different
