@@ -66,7 +66,7 @@ cutree(grpWD2cst_constr_hclust, k=5)
 ##
 ## End of the artificial map example
 
-
+## library(adespatial)
 ### Second example: Fish community composition along the Doubs River,
 ### France. The sequence is analyzed as a case of chronological
 ### clustering, substituting space for time.
@@ -195,12 +195,12 @@ res <- benchmark(nobj=c(1000,2000,5000,10000,20000,50000,100000))
 ### Plotting the results:
 ok <- res %>% apply(1L, function(x) !x %>% is.na %>% any)
 par(mar=c(3,6,2,2),mfrow=c(2L,1L))
-barplot(height = res[ok,"Time (sec)"], names.arg= res[ok,"N.objects"],
-        ylab="Time (seconds)\n",xlab="",las=1L,log="y")
+barplot(height = res[ok,"Time (sec)"], names.arg=res[ok,"N.objects"],
+        ylab="Time (seconds)\n", xlab="", las=1L, log="y")
 par(mar=c(5,6,0,2))
-barplot(height = res[ok,"Storage (MiB)"], names.arg= res[ok,"N.objects"],
-        ylab="Total storage (MB)\n",xlab="Number of observations",
-        las=1L,log="y")
+barplot(height = res[ok,"Storage (MiB)"], names.arg=res[ok,"N.objects"],
+        ylab="Total storage (MB)\n", xlab="Number of observations",
+        las=1L, log="y")
 ##
 ### Examine the output file
 res
@@ -531,4 +531,3 @@ head(ScotchWhiskey$finish)
 ##
 ### The end
 ##
-

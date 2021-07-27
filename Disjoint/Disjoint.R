@@ -59,6 +59,7 @@ test.out2 <-
     coords=ex.xy # File of geographic coordinates
   )
 ##
+## cutree(test.out2,k=2)
 par(mfrow=c(1,2))
 plot(test.out2, k=3) # Même graphique que test.out (OK)
 stats:::plot.hclust(test.out2, hang=-1)
@@ -124,8 +125,9 @@ grpWD2cst_constr_hclust <-
   constr.hclust(
     dist(D.dat), method="ward.D2",
     neighbors, coords)
-stats:::plot.hclust(grpWD2cst_constr_hclust, hang=-1)
 ##
+par(mfrow=c(1L,1L))
+stats:::plot.hclust(grpWD2cst_constr_hclust, hang=-1)
 plot(grpWD2cst_constr_hclust, k=3, links=TRUE, las=1, xlab="Eastings",
      ylab="Northings", pch=21L, cex=3, lwd=3)
 ##
