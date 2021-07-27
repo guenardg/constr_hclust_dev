@@ -5,7 +5,17 @@
 ##
 ## Pierre's example
 ##
-library(constr.hclust)
+## library(constr.hclust)
+## detach("package:constr.hclust",unload=TRUE)
+##
+compile <- function() {
+  try(dyn.unload("../constr.hclust/src/constr.hclust.so"))
+  system("R CMD SHLIB ../constr.hclust/src/constr.hclust.c")
+  dyn.load("../constr.hclust/src/constr.hclust.so")
+  for(f in list.files("../constr.hclust/R","*.R"))
+    source(file.path("../constr.hclust/R",f))
+}
+compile()
 ##
 ## For simplicity of the example, matrix Y only contains one response variable
 var = c(1.5, 0.2, 5.1, 3.0, 2.1, 1.4)
@@ -58,15 +68,30 @@ test.out2$merge
 test.out2$height
 test.out2$order
 ##
-test.out_mod <- test.out2
-test.out_mod$height[5] <- NA
-test.out_mod$merge[5,] <- c(3,4)
-test.out_mod$order <- c(1,2,3,6,4,5)
+## Carry out constrained clustering analysis
+test.out3 <-
+  constr.lshclust(
+    ex.Y,             # Response matrix
+    links=ex.E,       # File of link edges (constraint) E
+    coords=ex.xy      # File of geographic coordinates
+  )
 ##
+## Plot the results for k = 3
 par(mfrow=c(1,2))
-plot(test.out_mod, k=3) # Même graphique que test.out (OK)
-stats:::plot.hclust(test.out_mod, hang=-1)
+plot(test.out3, k=3)
+stats:::plot.hclust(test.out3, hang=-1)
 ##
+test.out4 <-
+  constr.lshclust(
+    ex.Y,             # Response matrix
+    links=ex.E2,      # File of link edges (constraint) E
+    coords=ex.xy      # File of geographic coordinates
+  )
+##
+## Plot the results for k = 3
+par(mfrow=c(1,2))
+plot(test.out4, k=3)
+stats:::plot.hclust(test.out4, hang=-1)
 ##
 library(spdep)
 ##
@@ -86,7 +111,7 @@ for(i in 1:(nrow(links.mat.dat)-1))
     if(links.mat.dat[i,j])
       neighbors <- rbind(neighbors,c(i,j))
 ##
-D.dat <- dist(runif(1:nrow(coords)))
+D.dat <- runif(1:nrow(coords))
 ##
 plot(coords, type='n',asp=1)
 title("Delaunay triangulation")
@@ -97,24 +122,22 @@ for(i in 1:nrow(neighbors))
 ##
 grpWD2cst_constr_hclust <-
   constr.hclust(
-    D.dat, method="ward.D2",
+    dist(D.dat), method="ward.D2",
     neighbors, coords)
-## stats:::plot.hclust(grpWD2cst_constr_hclust, hang=-1)
+stats:::plot.hclust(grpWD2cst_constr_hclust, hang=-1)
 ##
 plot(grpWD2cst_constr_hclust, k=3, links=TRUE, las=1, xlab="Eastings",
      ylab="Northings", pch=21L, cex=3, lwd=3)
 ##
-grpWD2cst_constr_hclust$height[10:11] <- NA
-grpWD2cst_constr_hclust$merge[10,] <- c(8,9)  ## Fusion acceptable par hclust.
-grpWD2cst_constr_hclust$merge[11,] <- c(7,10) ## Idem
-grpWD2cst_constr_hclust$order <- 1:length(grpWD2cst_constr_hclust$order)
-## stats:::plot.hclust(grpWD2cst_constr_hclust, hang=-1, ylim=c(0,1))
+grpWD2cst_constr_lshclust <-
+  constr.lshclust(
+    D.dat,
+    neighbors, coords)
 ##
-grpWD2cst_constr_hclust2 <- grpWD2cst_constr_hclust
-grpWD2cst_constr_hclust2$height[-(10:11)] <- 0
-grpWD2cst_constr_hclust2$merge[-(10:11),] <- 0
-cutree(grpWD2cst_constr_hclust2,3)
-
-
-
-
+stats:::plot.hclust(grpWD2cst_constr_lshclust, hang=-1)
+grpWD2cst_constr_lshclust$merge
+grpWD2cst_constr_lshclust$height
+##
+plot(grpWD2cst_constr_lshclust, k=3, links=TRUE, las=1, xlab="Eastings",
+     ylab="Northings", pch=21L, cex=3, lwd=3)
+##
