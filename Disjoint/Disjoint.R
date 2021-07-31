@@ -5,17 +5,18 @@
 ##
 ## Pierre's example
 ##
-library(constr.hclust)
+if(FALSE) {
+  compile <- function() {
+    try(dyn.unload("../constr.hclust/src/constr.hclust.so"))
+    system("R CMD SHLIB ../constr.hclust/src/constr.hclust.c")
+    dyn.load("../constr.hclust/src/constr.hclust.so")
+    for(f in list.files("../constr.hclust/R","*.R"))
+      source(file.path("../constr.hclust/R",f))
+  }
+  compile()
+} else
+  library(constr.hclust)
 ## detach("package:constr.hclust",unload=TRUE)
-##
-## compile <- function() {
-##   try(dyn.unload("../constr.hclust/src/constr.hclust.so"))
-##   system("R CMD SHLIB ../constr.hclust/src/constr.hclust.c")
-##   dyn.load("../constr.hclust/src/constr.hclust.so")
-##   for(f in list.files("../constr.hclust/R","*.R"))
-##     source(file.path("../constr.hclust/R",f))
-## }
-## compile()
 ##
 ## For simplicity of the example, matrix Y only contains one response variable
 var = c(1.5, 0.2, 5.1, 3.0, 2.1, 1.4)
@@ -61,7 +62,7 @@ test.out2 <-
 ##
 ## cutree(test.out2,k=2)
 par(mfrow=c(1,2))
-plot(test.out2, k=3) # Même graphique que test.out (OK)
+plot(test.out2, k=1) # Même graphique que test.out (OK)
 stats:::plot.hclust(test.out2, hang=-1)
 axis(2,at=0:ceiling(max(test.out2$height,na.rm=TRUE)))
 ##
@@ -142,7 +143,7 @@ grpWD2cst_constr_lshclust <-
 par(mfrow=c(1L,2L))
 plot(grpWD2cst_constr_lshclust, k=3, links=TRUE, las=1, xlab="Eastings",
      ylab="Northings", pch=21L, cex=3, lwd=3)
-stats:::plot.hclust(grpWD2cst_constr_lshclust, hang=-1)
+stats:::plot.hclust(grpWD2cst_constr_lshclust, hang=-1, col=1:2)
 axis(2,at=seq(0,ceiling(max(grpWD2cst_constr_lshclust$height,na.rm=TRUE)),0.1))
 ##
 grpWD2cst_constr_lshclust$merge
