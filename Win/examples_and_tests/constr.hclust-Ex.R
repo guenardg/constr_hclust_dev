@@ -388,6 +388,71 @@ plotWhiskey("norm", 5L)
 ##D ## End of the Doubs River fish assemblages example
 ##D 
 ##D ##
+##D ### Example with 6 connected points, shown in Fig. 2 of Guénard & Legendre paper 
+##D ##
+##D var = c(1.5, 0.2, 5.1, 3.0, 2.1, 1.4)
+##D ex.Y = data.frame(var)
+##D ##
+##D ## Site coordinates, matrix xy
+##D x.coo = c(-1, -2, -0.5, 0.5, 2, 1)
+##D y.coo = c(-2, -1, 0, 0, 1, 2)
+##D ex.xy = data.frame(x.coo, y.coo)
+##D ##
+##D ## Matrix of connecting edges E
+##D from = c(1,1,2,3,4,3,4)
+##D to = c(2,3,3,4,5,6,6)
+##D ex.E = data.frame(from, to)
+##D ##
+##D ## Carry out constrained clustering analysis
+##D test.out <-
+##D     constr.hclust(
+##D         dist(ex.Y),       # Response dissimilarity matrix
+##D         method="ward.D2", # Clustering method
+##D         links=ex.E,       # File of link edges (constraint) E
+##D         coords=ex.xy      # File of geographic coordinates
+##D     )
+##D ##
+##D par(mfrow=c(1,2))
+##D ## Plot the map of the results for k = 3
+##D plot(test.out, k=3)
+##D ## Plot the dendrogram
+##D stats:::plot.hclust(test.out, hang=-1)
+##D ##
+##D 
+##D ### Same example modified: disjoint clusters
+##D ##  Same ex.Y and ex.xy as in the previous example
+##D var = c(1.5, 0.2, 5.1, 3.0, 2.1, 1.4)
+##D ex.Y = data.frame(var)
+##D ##
+##D ## Site coordinates, matrix xy
+##D x.coo = c(-1, -2, -0.5, 0.5, 2, 1)
+##D y.coo = c(-2, -1, 0, 0, 1, 2)
+##D ex.xy = data.frame(x.coo, y.coo)
+##D ##
+##D ## Matrix of connecting edges E2
+##D from = c(1,1,2,4,4)
+##D to = c(2,3,3,5,6)
+##D ex.E2 = data.frame(from, to)
+##D ##
+##D ## Carry out constrained clustering analysis
+##D test.out2 <-
+##D     constr.hclust(
+##D         dist(ex.Y),       # Response dissimilarity matrix
+##D         method="ward.D2", # Clustering method
+##D         links=ex.E2,      # File of link edges (constraint) E
+##D         coords=ex.xy      # File of geographic coordinates
+##D     )
+##D cutree(test.out2, k=2)
+##D ##
+##D par(mfrow=c(1,2))
+##D ## Plot the map of the results for k = 3
+##D plot(test.out2, k=3)
+##D ## Plot the dendrogram showing the disconnected groups
+##D stats:::plot.hclust(test.out2, hang=-1)
+##D axis(2,at=0:ceiling(max(test.out2$height,na.rm=TRUE)))
+##D ##
+##D ## End of the disjoint clusters example
+##D ##
 ##D ### Benchmarking example
 ##D ### Benchmarking can be used to estimate computation time for different
 ##D ### values of N. 
@@ -446,55 +511,6 @@ plotWhiskey("norm", 5L)
 ##D res
 ##D ##
 ##D ## End of the benchmarking example
-##D ##
-##D ### Disjoint clusters example
-##D ##
-##D var = c(1.5, 0.2, 5.1, 3.0, 2.1, 1.4)
-##D ex.Y = data.frame(var)
-##D ##
-##D ## Site coordinates, matrix xy
-##D x.coo = c(-1, -2, -0.5, 0.5, 2, 1)
-##D y.coo = c(-2, -1, 0, 0, 1, 2)
-##D ex.xy = data.frame(x.coo, y.coo)
-##D ##
-##D ## Matrix of connecting edges E
-##D from = c(1,1,2,3,4,3,4)
-##D to = c(2,3,3,4,5,6,6)
-##D ex.E = data.frame(from, to)
-##D ##
-##D ## Carry out constrained clustering analysis
-##D test.out <-
-##D     constr.hclust(
-##D         dist(ex.Y),       # Response dissimilarity matrix
-##D         method="ward.D2", # Clustering method
-##D         links=ex.E,       # File of link edges (constraint) E
-##D         coords=ex.xy      # File of geographic coordinates
-##D     )
-##D ##
-##D ## Plot the results for k = 3
-##D par(mfrow=c(1,2))
-##D plot(test.out, k=3)
-##D stats:::plot.hclust(test.out, hang=-1)
-##D ##
-##D from = c(1,1,2,4,4)
-##D to = c(2,3,3,5,6)
-##D ex.E2 = data.frame(from, to)
-##D ##
-##D test.out2 <-
-##D     constr.hclust(
-##D         dist(ex.Y),       # Response dissimilarity matrix
-##D         method="ward.D2", # Clustering method
-##D         links=ex.E2,      # File of link edges (constraint) E
-##D         coords=ex.xy      # File of geographic coordinates
-##D     )
-##D ##
-##D par(mfrow=c(1,2))
-##D plot(test.out2, k=3)
-##D stats:::plot.hclust(test.out2, hang=-1)
-##D axis(2,at=0:ceiling(max(test.out2$height,na.rm=TRUE)))
-##D ##
-##D ## End of the disjoint clusters example
-##D ##
 ## End(Not run)
 ### End of examples
 
