@@ -1,9 +1,0 @@
-Faithful                Old Faithful Erruption Interval Data Set
-Oribates                Borcard's Obitatid Mite Data Set
-ScotchWhiskey           Scotch Whiskey Data Set
-constr.hclust           Space- And Time-Constrained Clustering
-constr.hclust-class     Class For Constrained Hiereachical Clustering
-constr.lshclust         Space- And Time-Constrained Least Squares
-                        Clustering (Experimental)
-plot.constr.hclust      Plotting Method For Space- And Time-Constrained
-                        Clustering
