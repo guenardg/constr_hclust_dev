@@ -124,7 +124,7 @@ if(FALSE) {
   ##
   plot(grpWD2cst_fish, links=TRUE, k=10, las=1, xlab="Eastings (km)",
        ylab="Northings (km)", cex=2, lwd=5, lwd.pt=0.5,
-       hybrids="single", lty.hyb=3, lwd.hyb=0.5)
+       hybrids="single", lty.hyb=3, lwd.hyb=0.5, col="white")
 }
 ##
 ### Another two-dimensional example: Scotch Whiskeys
@@ -209,7 +209,7 @@ if(FALSE) {
 ### Not retained:
 if(FALSE) {
   m <- 5L
-  col <- rainbow(m+1L)
+  col <- rainbow(m + 1L)
   for(i in c("ward.D", "ward.D2", "single", "complete", "average", "mcquitty",
              "centroid", "median", "flexible")) {
     ## i="ward.D"
@@ -271,13 +271,13 @@ if(FALSE) {
     start.time = Sys.time()
     res.big <- constr.hclust(D.big, method="ward.D2", neighbors.big)
     end.time = Sys.time()
-    end.time-start.time
+    end.time - start.time
   }
   {
     start.time = Sys.time()
     part <- cutree(res.big,100L)
     end.time = Sys.time()
-    end.time-start.time
+    end.time - start.time
   }
   ##
   k <- 6L
@@ -387,7 +387,7 @@ if(FALSE) {
            angle=90, lwd=2)
     text(x=0.65, y=0, labels="1m", cex=1.5)
     plot(mite.chclust, parts[i], links=TRUE, plot=FALSE,
-         col=cols[round(seq(1,length(cols),length.out=parts[i]))], lwd=4,
+         bg=cols[round(seq(1,length(cols),length.out=parts[i]))], lwd=4,
          cex=2.5, hybrids="single", lwd.hyb=0.25, lty.hyb=3)
     text(x=0.25, y=2.25, labels=LETTERS[i], cex=2.5)
   }
@@ -404,7 +404,7 @@ if(FALSE) {
            angle=90, lwd=2)
     text(x=0.65, y=0, labels="1m", cex=1.5)
     plot(mite.clshclust, parts[i], links=TRUE, plot=FALSE,
-         col=cols[round(seq(1,length(cols),length.out=parts[i]))], lwd=4,
+         bg=cols[round(seq(1,length(cols),length.out=parts[i]))], lwd=4,
          cex=2.5, hybrids="single", lwd.hyb=0.25, lty.hyb=3)
     text(x=0.25, y=2.25, labels=LETTERS[i], cex=2.5)
   }
